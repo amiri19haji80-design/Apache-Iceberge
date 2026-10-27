@@ -1,2 +1,0 @@
-$R = "$HOME\OneDrive - BNP Paribas\Desktop\Repos_latest"
-Get-ChildItem $R -Recurse -File -Include *.py,*.json,*.yml,*.yaml,*.sh,*.cfg,*.ini,Jenkinsfile*,Dockerfile*,*.env* -ErrorAction SilentlyContinue | Where-Object { $_.FullName -notmatch '\\\.git\\' } | Select-String -Pattern 'QDI_APEX|apps/airflow|/apps/|_CRED' | ForEach-Object { "{0}:{1}: {2}" -f $_.Path.Substring($R.Length + 1), $_.LineNumber, $_.Line.Trim() } | Select-Object -First 50
